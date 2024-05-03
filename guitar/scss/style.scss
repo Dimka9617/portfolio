@@ -21,6 +21,7 @@ $colorOr: rgb(255, 100, 40);
 
 $tablet:991.98;
 $mobileL: 767.98;
+$burger: 700;
 $mobileS: 478.98;
 
 // IMPORTS ---------------------------------------------
@@ -35,6 +36,9 @@ $mobileS: 478.98;
 body{
 	font-family: $mainFont;
 	color: $colorGr;
+	.menu-open &{
+		overflow: hidden;
+	}
 }
 [class*="__container"] {
 	 max-width: toRem(1230);
@@ -86,7 +90,7 @@ h3{
 		@include adaptiveValue("margin-bottom", 180, 40);
 	}
 	&__categories {
-		@include adaptiveValue("margin-bottom", 220, 40);
+		@include adaptiveValue("margin-bottom", 200, 40);
 	}
 	&__brands {
 		@include adaptiveValue("margin-bottom", 180, 40);
@@ -285,10 +289,10 @@ h3{
 	}
 }
 .row-store {
-}
-.store-component {
 
-	// .store-component__head
+
+
+	// .row-store__head
 
 	&__head {
 		display: flex;
@@ -303,7 +307,7 @@ h3{
 		}
 	}
 
-	// .store-component__view
+	// .row-store__view
 
 	&__view {
 		@include adaptiveValue("font-size", 20, 16);
@@ -323,7 +327,7 @@ h3{
 		}
 	}
 
-	// .store-component__items
+	// .row-store__items
 
 	&__items {
 		display: grid;
@@ -337,7 +341,7 @@ h3{
 		}
 	}
 
-	// .store-component__item
+	// .row-store__item
 
 	&__item {
 		display: flex;
@@ -351,7 +355,7 @@ h3{
 		}
 	}
 
-	// .store-component__img
+	// .row-store__img
 
 	&__img {
 		img{
@@ -374,7 +378,7 @@ h3{
 		}
 	}
 
-	// .store-component__desc
+	// .row-store__desc
 
 	&__desc {
 		display: flex;
@@ -394,7 +398,7 @@ h3{
 		}
 	}
 
-	// .store-component__title
+	// .row-store__title
 
 	&__title {
 		@include adaptiveValue("font-size", 16, 14);
@@ -418,7 +422,7 @@ h3{
 		}
 	}
 
-	// .store-component__price
+	// .row-store__price
 
 	&__price {
 		font-size: toRem(14);
@@ -435,7 +439,7 @@ h3{
 	&__container {
 		h3{
 			text-align: center;
-			@include adaptiveValue("margin-bottom", 80, 15, 0, $containerWidth, $mobileL);
+			@include adaptiveValue("margin-bottom", 80, 30, 0, $containerWidth, $mobileL);
 		}
 	}
 
@@ -557,16 +561,81 @@ h3{
 
 	&__items {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(toRem(120), 1fr));
-		@include adaptiveValue("column-gap", 160, 40);
-		row-gap: toRem(20);
+		@include adaptiveValue("gap", 80, 40);
+		overflow: hidden;
 	}
 
-	// .brands__item
+	.brands {
 
-	&__item {
+		// .brands__row
+
+		&__row {
+			display: flex;
+			@include adaptiveValue("column-gap", 40, 20);
+			row-gap: toRem(20);
+			justify-content: space-between;
+			&--left {
+				@media(max-width:toEm($mobileL)){
+					animation: move-left 15s linear  infinite alternate;
+				}
+				
+			}
+			&--right{
+				@media(max-width:toEm($mobileL)){
+					animation: move-right 15s linear infinite alternate;
+				}
+				
+			}
+			@keyframes move-left {
+				0%{
+					transform: translateX(0%);
+				}
+				10%{
+					transform: translateX(0%);
+				}
+				90%{
+					transform: translateX(-100%);
+				}
+				100%{
+					transform: translateX(-100%);
+				}
+				
+			}
+			@keyframes move-right {
+				0%{
+					transform: translateX(-100%);
+				}
+				10%{
+					transform: translateX(-100%);
+				}
+				90%{
+					transform: translateX(0%);
+				}
+				100%{
+					transform: translateX(0%);
+				}
+				
+			}
+		}
+		
+		// .brands__item
+		&__item {
+			flex: 1 0 auto;
+			width: 50%;
+			@media(min-width:toEm($mobileL)){
+				width: 25%;
+				max-width: toRem(152);
+			}
+			
+		}
+}
+	&__img{
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		max-width: toRem(152);
-		img{
+		height: toRem(89);
+	img{
 			width: 100%;
 			height: 100%;
 			object-fit: contain;
@@ -854,15 +923,18 @@ h3{
 		@media(max-width:toEm($mobileL)){
 		display: flex;
 		gap: toRem(10);
+		justify-content: space-between;
 		}
-		@media(max-width:toEm(424.98)){
+		@media(max-width:toEm(491)){
 			flex-direction: column;
 		}
 		h3{
 			@include adaptiveValue("font-size", 48, 30);
 			&:not(:last-child){
 				@include adaptiveValue("margin-bottom", 60, 15, 0, $containerWidth, $mobileL);
-				text-align: left;
+			}
+			@media(max-width:toEm(491)){
+				text-align: center;
 			}
 		}
 	}
@@ -873,6 +945,9 @@ h3{
 		display: flex;
 		flex-wrap: wrap;
 		gap: toRem(25);
+		@media(max-width:toEm($tablet)){
+			justify-content: center;
+		}
 		@media(max-width:toEm(424.98)){
 			flex-wrap: nowrap;
 		}
@@ -881,8 +956,8 @@ h3{
 	// .app__link
 
 	&__link {
-		aspect-ratio: 171 / 57;
-		flex: 0 1 toRem(171);
+		aspect-ratio: 178 / 57;
+		flex: 0 1 toRem(178);
 		@media(any-hover:hover){
 			&:hover img{
 				transform: scale(1.1);		
@@ -945,6 +1020,13 @@ h3{
 		&:first-child{
 			@media(max-width:toEm($mobileL)){
 				flex: 0 1 100%;
+				text-align: center;
+			}
+		}
+		&:last-child{
+			@media(max-width:toEm($mobileS)){
+				margin: 0 auto;
+				text-align: center;
 			}
 		}
 	
@@ -965,6 +1047,9 @@ h3{
 	&__links{
 		display: flex;
 		flex-direction: column;
+		@media(max-width:toEm($mobileL)){
+			align-items: center;
+		}
 		a{	
 			display: flex;
 			gap: toRem(20);
@@ -1002,6 +1087,32 @@ h3{
 			width: toRem(123);
 			flex: 0 0 toRem(123);
 			height: toRem(29);
+		}
+	}
+	&__socials {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		column-gap: toRem(35);
+		row-gap: toRem(15);
+	}
+
+	// .body-footer__social
+
+	&__social {
+		font-size: toRem(22);
+		transition: all .3s;
+		transform: scale(1.001);
+		@media(any-hover:hover){
+			&:hover{
+				color: $colorOr;	
+			}
+		}
+		@media(any-hover:none){
+			&:active{
+				color: $colorOr;	
+				transition: none;
+			}
 		}
 	}
 
@@ -1083,34 +1194,35 @@ h3{
 		transition: all .3s;
 	}
 
-	// .footer-nav__socials
+	// .body-footer__socials
 
-	&__socials {
-		display: flex;
-		align-items: center;
-		flex-wrap: wrap;
-		column-gap: toRem(32);
-		row-gap: toRem(15);
-	}
+	// &__socials {
+	// 	display: flex;
+	// 	align-items: center;
+	// 	flex-wrap: wrap;
+	// 	column-gap: toRem(50);
+	// 	row-gap: toRem(15);
+	// }
 
-	// .footer-nav__social
+	// // .body-footer__social
 
-	&__social {
-		font-size: toRem(22);
-		transition: all .3s;
-		transform: scale(1.001);
-		@media(any-hover:hover){
-			&:hover{
-				color: $colorOr;	
-			}
-		}
-		@media(any-hover:none){
-			&:active{
-				color: $colorOr;	
-				transition: none;
-			}
-		}
-	}
+	// &__social {
+	// 	font-size: toRem(22);
+	// 	transition: all .3s;
+	// 	transform: scale(1.001);
+	// 	@media(any-hover:hover){
+	// 		&:hover{
+	// 			color: $colorOr;	
+	// 		}
+	// 	}
+	// 	@media(any-hover:none){
+	// 		&:active{
+	// 			color: $colorOr;	
+	// 			transition: none;
+	// 		}
+	// 	}
+	// }
+	
 }
 
 

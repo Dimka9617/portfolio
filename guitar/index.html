@@ -16,7 +16,7 @@
 		<header class="header">
 			<div class="header__container">
 				<img src="img/header/logo.svg" alt="Logo">
-				<nav class="nav__menu menu">
+				<nav class="menu">
 					<ul class="menu__list">
 						<li class="menu__item">
 							<a data-scroll=".page__store--one" href="#" class="menu__link">Store</a>
@@ -29,6 +29,12 @@
 						</li>
 					</ul>
 				</nav>
+
+
+				<button aria-label="menu-burger" class="icon-menu">
+					<img src="img/butterfly.svg" alt="butterfly">
+					<span></span>
+				</button>
 			</div>
 
 		</header>
@@ -68,43 +74,43 @@
 					<h3>Check out the <span>Store</span></h3>
 					<div class="store__body">
 						<div class="store__row row-store">
-							<div class="store-component__head">
+							<div class="row-store__head">
 								<h4>NEW ON THE BOARD</h4>
-								<a href="#" class="store-component__view">view all</a>
+								<a href="#" class="row-store__view">view all</a>
 							</div>
-							<div class="store-component__items">
+							<div class="row-store__items">
 
-								<article class="store-component__item">
-									<a href="#" class="store-component__img">
+								<article class="row-store__item">
+									<a href="#" class="row-store__img">
 										<img src="img/store/guitar1.webp" alt="Guitar">
 									</a>
-									<div class="store-component__desc">
+									<div class="row-store__desc">
 										<h5>
-											<a href="#" class="store-component__title">The Essential Les Paul</a>
+											<a href="#" class="row-store__title">The Essential Les Paul</a>
 										</h5>
-										<div class="store-component__price">$1,299.00</div>
+										<div class="row-store__price">$1,299.00</div>
 									</div>
 								</article>
-								<article class="store-component__item">
-									<a href="#" class="store-component__img">
+								<article class="row-store__item">
+									<a href="#" class="row-store__img">
 										<img src="img/store/guitar2.webp" alt="Guitar">
 									</a>
-									<div class="store-component__desc">
+									<div class="row-store__desc">
 										<h5>
-											<a href="#" class="store-component__title">J-45 Standardl</a>
+											<a href="#" class="row-store__title">J-45 Standardl</a>
 										</h5>
-										<div class="store-component__price">$1,699.00</div>
+										<div class="row-store__price">$1,699.00</div>
 									</div>
 								</article>
-								<article class="store-component__item">
-									<a href="#" class="store-component__img">
+								<article class="row-store__item">
+									<a href="#" class="row-store__img">
 										<img src="img/store/guitar3.webp" alt="Guitar">
 									</a>
-									<div class="store-component__desc">
+									<div class="row-store__desc">
 										<h5>
-											<a href="#" class="store-component__title">Hummingbird Standard</a>
+											<a href="#" class="row-store__title">Hummingbird Standard</a>
 										</h5>
-										<div class="store-component__price">$2,099.00</div>
+										<div class="row-store__price">$2,099.00</div>
 									</div>
 								</article>
 							</div>
@@ -113,43 +119,43 @@
 						</div>
 
 						<div class="store__row row-store">
-							<div class="store-component__head">
+							<div class="row-store__head">
 								<h4>TOP SELLING</h4>
-								<a href="#" class="store-component__view">view all</a>
+								<a href="#" class="row-store__view">view all</a>
 							</div>
-							<div class="store-component__items">
+							<div class="row-store__items">
 
-								<article class="store-component__item">
-									<a href="#" class="store-component__img">
+								<article class="row-store__item">
+									<a href="#" class="row-store__img">
 										<img src="img/store/guitar4.webp" alt="Guitar">
 									</a>
-									<div class="store-component__desc">
+									<div class="row-store__desc">
 										<h5>
-											<a href="#" class="store-component__title">Active Precision Bass® PH V</a>
+											<a href="#" class="row-store__title">Active Precision Bass® PH V</a>
 										</h5>
-										<div class="store-component__price">$4,199.00</div>
+										<div class="row-store__price">$4,199.00</div>
 									</div>
 								</article>
-								<article class="store-component__item">
-									<a href="#" class="store-component__img">
+								<article class="row-store__item">
+									<a href="#" class="row-store__img">
 										<img src="img/store/guitar5.webp" alt="Guitar">
 									</a>
-									<div class="store-component__desc">
+									<div class="row-store__desc">
 										<h5>
-											<a href="#" class="store-component__title">Redondo Special</a>
+											<a href="#" class="row-store__title">Redondo Special</a>
 										</h5>
-										<div class="store-component__price">$2,800.00</div>
+										<div class="row-store__price">$2,800.00</div>
 									</div>
 								</article>
-								<article class="store-component__item">
-									<a href="#" class="store-component__img">
+								<article class="row-store__item">
+									<a href="#" class="row-store__img">
 										<img src="img/store/guitar6.webp" alt="Guitar">
 									</a>
-									<div class="store-component__desc">
+									<div class="row-store__desc">
 										<h5>
-											<a href="#" class="store-component__title">Professional II Stratocaster®</a>
+											<a href="#" class="row-store__title">Professional II Stratocaster®</a>
 										</h5>
-										<div class="store-component__price">$3,199.00</div>
+										<div class="row-store__price">$3,199.00</div>
 									</div>
 								</article>
 
@@ -212,29 +218,51 @@
 				<div class="brands__container">
 					<h3>Featuring the <span>Best Brands</span></h3>
 					<div class="brands__items">
-						<div class="brands__item">
-							<img src="img/brands/1.svg" alt="Image">
+
+						<div class="brands__row brands__row--left">
+							<div class="brands__item">
+								<div class="brands__img">
+									<img src="img/brands/1.svg" alt="Image">
+								</div>
+							</div>
+							<div class="brands__item">
+								<div class="brands__img">
+									<img src="img/brands/2.svg" alt="Image">
+								</div>
+							</div>
+							<div class="brands__item">
+								<div class="brands__img">
+									<img src="img/brands/3.svg" alt="Image">
+								</div>
+							</div>
+							<div class="brands__item">
+								<div class="brands__img">
+									<img src="img/brands/4.svg" alt="Image">
+								</div>
+							</div>
 						</div>
-						<div class="brands__item">
-							<img src="img/brands/2.svg" alt="Image">
-						</div>
-						<div class="brands__item">
-							<img src="img/brands/3.svg" alt="Image">
-						</div>
-						<div class="brands__item">
-							<img src="img/brands/4.svg" alt="Image">
-						</div>
-						<div class="brands__item">
-							<img src="img/brands/5.svg" alt="Image">
-						</div>
-						<div class="brands__item">
-							<img src="img/brands/6.svg" alt="Image">
-						</div>
-						<div class="brands__item">
-							<img src="img/brands/7.svg" alt="Image">
-						</div>
-						<div class="brands__item">
-							<img src="img/brands/8.svg" alt="Image">
+
+						<div class="brands__row brands__row--right">
+							<div class="brands__item">
+								<div class="brands__img">
+									<img src="img/brands/5.svg" alt="Image">
+								</div>
+							</div>
+							<div class="brands__item">
+								<div class="brands__img">
+									<img src="img/brands/6.svg" alt="Image">
+								</div>
+							</div>
+							<div class="brands__item">
+								<div class="brands__img">
+									<img src="img/brands/7.svg" alt="Image">
+								</div>
+							</div>
+							<div class="brands__item">
+								<div class="brands__img">
+									<img src="img/brands/8.svg" alt="Image">
+								</div>
+							</div>
 						</div>
 
 					</div>
@@ -422,14 +450,14 @@
 					</div>
 					<div class="body-footer__column">
 						<div class="body-footer__label">Follow us</div>
-						<div class="footer-nav__socials">
-							<a href="#" class="footer-nav__social icon-fb">
+						<div class="body-footer__socials">
+							<a href="#" class="body-footer__social icon-fb">
 								<span class="visually-hidden">Facebook icon</span>
 							</a>
-							<a href="#" class="footer-nav__social icon-insta">
+							<a href="#" class="body-footer__social icon-insta">
 								<span class="visually-hidden">Instagram icon</span>
 							</a>
-							<a href="#" class="footer-nav__social icon-twit">
+							<a href="#" class="body-footer__social icon-twit">
 								<span class="visually-hidden">Twitter icon</span>
 							</a>
 						</div>
