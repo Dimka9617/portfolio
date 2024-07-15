@@ -1,0 +1,148 @@
+.component {
+	background-color: $colorGr;
+	color: $colorWh;
+
+	// .component__container
+
+	&__container {
+		@include adaptiveValue("padding-top", 94, 35);
+		@include adaptiveValue("padding-bottom", 94, 35);
+	}
+
+	// .component__head
+
+	&__head {
+
+		// &__label{
+		// 	font-family: $mainFont;
+		// 	font-weight: 400;
+		// 	color: $colorOr;
+		// }
+		>*{
+			@include adaptiveValue("margin-bottom", 10, 8);
+		}
+		>*:last-child{
+			margin-bottom: toRem(0);
+		}
+		p{
+			
+		}
+	}
+
+	// .component__title
+
+	&__title {
+		@include adaptiveValue("margin-bottom", 20, 10);
+
+	}
+}
+.title {
+	font-family: $alterFont;
+	font-weight: 400;
+	color: $colorGr;
+	&--white{
+		color: $colorWh;
+	}
+}
+.label{
+	font-family: $mainFont;
+	font-weight: 400;
+	color: $colorOr;
+}
+.items {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(toRem(200), 1fr));
+	@include adaptiveValue("column-gap", 30, 20);
+	row-gap: toRem(25);
+}
+.item-product {
+	display: flex;
+	flex-direction: column;
+	
+
+	// .item-product__picture
+
+	&__picture {
+		position: relative;
+		&:not(:last-child){
+			@include adaptiveValue("margin-bottom", 17, 15);
+		}
+		&::before{
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 0;
+			background-color: #0000002f;
+			transition: all .3s;
+		}
+		@media(any-hover:hover){
+			&:hover{
+				& {
+					&::before{
+						height: 100%;
+					}
+				}		
+			}
+		}
+		@media(any-hover:none){
+			&:active{
+				&::before{
+					height: 100%;
+					transition: none;
+				}
+			}
+		}
+		img{
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			aspect-ratio: 271 / 270;
+		}
+	}
+
+	// .item-product__desc
+
+	&__desc {
+		@media(max-width:toEm(451)){
+			display: flex;
+			gap: toRem(10);
+			align-items: center;
+			justify-content: space-between;
+		}
+		h3{
+			&:not(:last-child){
+				margin-bottom: toRem(5);
+			}
+		}
+	}
+
+	// .item-product__label
+
+	&__label {
+		font-family: $cormorant;
+		font-size: toRem(24);
+		font-weight: 700;
+		line-height: 140%;
+		transition: all .3s;
+		text-decoration: underline transparent;
+		@media(any-hover:hover){
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+		@media(any-hover:none){
+			&:active{
+				text-decoration: underline;
+				transition: none;
+			}
+		}
+		
+	}
+
+	// .item-product__price
+
+	&__price {
+	}
+}
