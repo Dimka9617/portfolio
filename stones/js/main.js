@@ -7,6 +7,8 @@ function clickAction(e){
 
 	if(targetElement.closest('.icon-menu')){
 		document.body.classList.toggle('menu-open')
+	}else if(targetElement.closest('.menu__link')){
+		document.body.classList.remove('menu-open')
 	}
 	// Spoller -------------------------------------------------------------------
 	if (targetElement.closest('[data-spoller]')) {
