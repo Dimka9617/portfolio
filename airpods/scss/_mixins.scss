@@ -1,0 +1,157 @@
+// Font Family
+@mixin font($font_name, $file_name, $weight, $style){
+	@font-face{
+		font-family: $font_name;
+		font-display: swap;
+		src:
+			url("../fonts/#{$file_name}.woff2") format("woff2"),
+			url("../fonts/#{$file_name}.woff") format("woff");
+		font-weight: #{$weight};
+		font-style: #{$style};
+}
+}
+// ==========================================
+@function percent($num1, $num2) {
+	$rez: math.div($num1, $num2) * 100%;
+	@return $rez;
+}
+
+@function toRem($num1, $num2: 16) {
+	$rez: math.div($num1, $num2) + rem;
+	@return $rez;
+}
+@function toEm($num1, $num2: 16) {
+	$rez: math.div($num1, $num2) + em;
+	@return $rez;
+}
+
+// Адаптивна властивість (clamp)
+@mixin adaptiveValue($property, $startSize, $minSize, $keepSize: 0, $widthFrom: $containerWidth, $widthTo: $minWidth) {
+	@if ($startSize==0) {
+		$startSize: 0.000001;
+	}
+	@if ($minSize==0) {
+		$minSize: 0.000001;
+	}
+
+	// Для calc();
+	$addSize: math.div($startSize - $minSize, 16);
+
+	@if ($widthFrom == $containerWidth and $maxWidthContainer == 0) {
+		$widthFrom: $maxWidth;
+	}
+
+	// Брейк-поїнти в EM
+	$widthFromMedia: toEm($widthFrom);
+	$widthToMedia: toEm($widthTo);
+
+	// Формула плаваючого значення
+	// Источник: https://css-tricks.com/linearly-scale-font-size-with-css-clamp-based-on-the-viewport/
+	$slope: math.div(($startSize - $minSize), ($widthFrom - $widthTo));
+	$yIntersection: -$widthTo * $slope + $minSize;
+	@if ($yIntersection==0) {
+		$yIntersection: 0.000001;
+	}
+	$flyValue: #{toRem($yIntersection)}" + " #{$slope * 100}vw;
+
+	// Отримання значення властивості
+	$propertyValue: #{"clamp(" toRem($minSize) "," $flyValue "," toRem($startSize) ")"};
+	// Якщо негативні значення
+	@if ($minSize > $startSize) {
+		$propertyValue: #{"clamp(" toRem($startSize) "," $flyValue "," toRem($minSize) ")"};
+	}
+
+	// Встановлюємо значення за замовчуванням
+	@if $keepSize != 1 and $keepSize != 3 {
+		@media (min-width: $widthFromMedia) {
+			#{$property}: toRem($startSize);
+		}
+	}
+	// Адаптуємо розмір у проміжку між зазначеними ширинами в'юпорту
+	@media (min-width: $widthToMedia) and (max-width: $widthFromMedia) {
+		// Якщо підтримується clamp();
+		@supports (#{$property}: $propertyValue) {
+			#{$property}: $propertyValue;
+		}
+		// Якщо не підтримується clamp();
+		@supports not (#{$property}: $propertyValue) {
+			#{$property}: calc(#{toRem($minSize)} + #{$addSize} * (100vw - #{toRem($widthTo)}) / #{math.div($widthFrom, 16) - math.div($widthTo, 16)});
+		}
+	}
+	@if $keepSize != 1 and $keepSize != 2 {
+		@media (max-width: $widthToMedia) {
+			#{$property}: toRem($minSize);
+		}
+	}
+}
+
+// HOVER EFFECT ======================================================================================================================================
+%btn-hover{
+	.blue{
+		font-size: toRem(20);
+		padding: toRem(15) toRem(25);
+		z-index: 3;
+		overflow: hidden;
+		position: relative;
+		background-color: #091242;
+		color: #fff;
+		@media(any-hover:hover){
+			&:hover::before{
+				transform: scale(3.9);
+			}
+		}
+		@media(any-hover:none){
+			&:active::before{
+				transform: scale(3.9);
+				transition: none;
+			}
+		}
+		&:before{
+			content:'';
+			position: absolute;
+			background: rgb(31, 42, 105);
+			transition: all .3s ease-in;
+			z-index: -1;
+			border-radius: 50%;
+			bottom: -40%;
+			right: -10%;
+			width: 30%;
+			height: 100%;
+		}
+	}
+	
+}
+
+@mixin bth-hover($padding:toRem(15) toRem(25), $fz:toRem(20), $color:black, $backColor:#091242){
+	font-size: toRem(20);
+	color: black;
+	padding: $padding;
+	position: relative;
+	z-index: 3;
+	overflow: hidden;
+	background-color: #091242;
+	@media(any-hover:hover){
+		&:hover::before{
+			transform: scale(3.9);
+		}
+	}
+	@media(any-hover:none){
+		&:active::before{
+			transform: scale(3.9);
+			transition: none;
+		}
+	}
+	&:before{
+		content:'';
+		position: absolute;
+		background: rgb(31, 42, 105);
+		transition: all .3s ease-in;
+		z-index: -1;
+		border-radius: 50%;
+		bottom: -40%;
+		right: -10%;
+		width: 30%;
+		height: 100%;
+	}
+
+}

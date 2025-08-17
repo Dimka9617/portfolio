@@ -1,0 +1,168 @@
+.component {
+
+	// .component__container
+
+	&__container {
+		
+		span{
+			color: $colorOr;
+		}
+	}
+
+	// .component__body
+
+	&__body {
+	}
+
+	// .component__row
+
+	&__row {
+	}
+}
+.row-component {
+
+	// .row-component__head
+
+	&__head {
+		display: flex;
+		justify-content: space-between;
+		gap: toRem(10);
+		h4{
+			@include adaptiveValue("font-size", 20, 16);
+			font-weight: 600;
+			line-height: 1.5; /* 30/20 */
+			letter-spacing: 8%;
+			color: $colorBl;
+		}
+	}
+
+	// .row-component__view
+
+	&__view {
+		@include adaptiveValue("font-size", 20, 16);
+		font-weight: 500;
+		line-height: 1.5; 
+		transition: all .3s;
+		@media(any-hover:hover){
+			&:hover{
+				color: $colorOr;	
+			}
+		}
+		@media(any-hover:none){
+			&:active{
+				color: $colorOr;
+				transition: none;
+			}
+		}
+	}
+
+	// .row-component__items
+
+	&__items {
+		display: grid;
+		@include adaptiveValue("gap", 54, 20);
+		@include adaptiveValue("margin-bottom", 100, 30);
+		@media(min-width:toEm($mobileS)){
+			grid-template-columns: repeat(2, 1fr);
+		}
+		@media(min-width:toEm($mobileL)){
+			grid-template-columns: repeat(3, 1fr);
+		}
+	
+	}
+
+
+.row-component {
+
+	// .row-component__item
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		min-height: 100%;
+		>*{
+		@include adaptiveValue("margin-bottom", 40, 15);
+		}
+		>*:last-child{
+			margin-bottom: toRem(0);
+		}
+	}
+
+	// .row-component__img
+
+	&__img {
+		img{
+			aspect-ratio: 364 / 190;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: all .3s;
+			@media(any-hover:hover){
+				&:hover{
+					opacity: 0.6;		
+				}
+			}
+			@media(any-hover:none){
+				&:active{
+					opacity: 0.6;
+					transition: none;	
+				}
+			}
+			
+		}
+	}
+
+	// .row-component__desc
+
+	&__desc {
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+		>*{
+			margin-bottom: toRem(10);
+		}
+		>*:last-child{
+			margin-bottom: toRem(0);
+		}
+		h5{
+			flex-grow: 1;
+		}
+		@media(max-width:toEm($mobileS)){
+			flex-direction: row;;
+		}
+	}
+
+	// .row-component__title
+
+	&__title {
+		@include adaptiveValue("font-size", 16, 14);
+		font-weight: 500;
+		line-height: 1.5; /* 24/16 */
+		color: $colorBl;
+		flex-grow: 1;
+		transition: all .3s;
+		@media(any-hover:hover){
+			&:hover{
+				text-decoration: underline;	
+				color: $colorOr;	
+			}
+		}
+		@media(any-hover:none){
+			&:active{
+				text-decoration: underline;	
+				color: $colorOr;
+				transition: none;	
+			}
+		}
+		
+	}
+
+	// .row-component__price
+
+	&__price {
+		font-size: toRem(14);
+		font-weight: 400;
+		line-height: 1.5; /* 21/14 */
+	}
+}
+}

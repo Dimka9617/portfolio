@@ -1,0 +1,228 @@
+.header {
+	position: sticky;
+	width: 100%;
+	left: 0;
+	top: 0;
+	z-index: 50;
+	transition: all 0.5s ease;
+	&--scroll {
+		background-color: rgba(225, 232, 220, 0.96);
+		opacity: 1;
+		backdrop-filter: toRem(40);
+	}
+	// .header__container
+
+	&__container {
+		display: flex;
+		justify-content: space-between;
+		gap: toRem(15);
+		align-items: center;
+		@include adaptiveValue("min-height", 109, 80, 0, $containerWidth, $tablet);
+	}
+
+	// .header__logo
+
+	&__logo {
+		display: flex;
+		align-items: center;
+		gap: toRem(8);
+		color: $black;
+		font-weight: 500;
+		line-height: 1.36; /* 30/22 */
+		position: relative;
+		z-index: 2;
+		@include adaptiveValue("font-size", 22, 14);
+		img {
+			width: toRem(55);
+			height: toRem(49);
+			@media (max-width: toEm($mobileS)) {
+				width: toRem(40);
+				height: toRem(35);
+			}
+		}
+		span {
+			@media (max-width: toEm($mobileS)) {
+				display: none;
+			}
+		}
+	}
+
+	&__actions {
+		display: flex;
+		gap: toRem(10);
+		position: relative;
+		z-index: 2;
+	}
+
+	// .header__link
+
+	&__link {
+		color: #fff;
+		background-color: #000;
+		border-radius: toRem(50);
+		padding: toRem(10) toRem(40);
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-weight: 500;
+		line-height: 1.37; /* 22/16 */
+		text-transform: uppercase;
+		transition: all 0.3s;
+		@media (max-width: toEm($mobileS)) {
+			padding: toRem(5) toRem(15);
+		}
+		@media (any-hover: hover) {
+			&:hover {
+				outline: toRem(1) solid #000;
+				background-color: #fff;
+				color: $black;
+			}
+		}
+		@media (any-hover: none) {
+			&:active {
+				transition: none;
+				outline: toRem(1) solid #000;
+				background-color: #fff;
+				color: $black;
+			}
+		}
+	}
+}
+.menu {
+	@media (max-width: toEm($tablet)) {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		left: -100%;
+		top: 0;
+		background-color: #f4f4e7;
+		transition: all 0.3s;
+		overflow: auto;
+		padding: toRem(130) toRem(30) toRem(40);
+		&::before {
+			content: "";
+			position: fixed;
+			top: 0;
+			left: -100%;
+			width: 100%;
+			min-height: toRem(80);
+			transition: all 0.3s;
+			background-color: #f4f4e7;
+			z-index: 2;
+			border-bottom: toRem(1) solid $black;
+		}
+		.menu-open & {
+			left: 0;
+			&::before {
+				left: 0;
+			}
+		}
+	}
+
+	// .menu__list
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+		row-gap: toRem(10);
+		@include adaptiveValue("column-gap", 30, 15);
+		@media (max-width: toEm($tablet)) {
+			flex-direction: column;
+			row-gap: toRem(25);
+			align-items: center;
+		}
+	}
+
+	// .menu__item
+
+	&__item {
+		text-transform: uppercase;
+		color: $black;
+		@media (any-hover: hover) {
+			&:hover {
+				.menu__link::before {
+					width: 100%;
+					left: 0;
+				}
+			}
+		}
+		@media (any-hover: none) {
+			&:active {
+				.menu__link {
+					transition: none;
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+
+	// .menu__link
+
+	&__link {
+		font-weight: 500;
+		line-height: 1.37; /* 22/16 */
+		position: relative;
+		&::before {
+			content: "";
+			position: absolute;
+			top: 100%;
+			left: 50%;
+			width: 0;
+			height: toRem(2);
+			border-radius: toRem(20);
+			background-color: $black;
+			transition: all 0.3s;
+		}
+		@media (max-width: toEm($tablet)) {
+			font-size: toRem(20);
+		}
+	}
+}
+.icon-menu {
+	display: none;
+	@media (max-width: toEm($tablet)) {
+		display: block;
+		position: relative;
+		z-index: 2;
+		width: toRem(40);
+		height: toRem(40);
+		border-radius: toRem(5);
+		background-color: $black;
+		@media (any-hover: none) {
+			cursor: default;
+		}
+		span,
+		&::after,
+		&::before {
+			content: "";
+			position: absolute;
+			width: 60%;
+			background-color: #fff;
+			height: toRem(2);
+			transition: all 0.3s ease;
+			right: 20%;
+		}
+		&::after {
+			bottom: 30%;
+		}
+		&::before {
+			top: 30%;
+		}
+		span {
+			top: calc(50% - toRem(1));
+		}
+		.menu-open & {
+			span {
+				transform: scale(0);
+			}
+			&::after {
+				transform: rotate(45deg);
+				top: calc(50% - toRem(1));
+			}
+			&::before {
+				transform: rotate(-45deg);
+				top: calc(50% - toRem(1));
+			}
+		}
+	}
+}
