@@ -1369,6 +1369,10 @@ body {
 		&:not(:last-child) {
 			@include adaptiveValue("margin-bottom", 30, 15);
 		}
+		@media (max-width: toEm(750)) {
+			justify-content: center;
+			text-align: center;
+		}
 		@media (max-width: toEm($mobileS)) {
 			text-align: center;
 		}
@@ -1402,6 +1406,10 @@ body {
 		display: flex;
 		align-items: center;
 		gap: toRem(8);
+		@media (max-width: toEm(899)) {
+			flex: 0 1 100%;
+			justify-content: center;
+		}
 		@media (max-width: toEm($mobileS)) {
 			margin: 0 auto;
 		}

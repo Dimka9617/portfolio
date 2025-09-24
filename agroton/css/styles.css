@@ -91,8 +91,7 @@ textarea {
 .header--scroll {
   background-color: rgba(225, 232, 220, 0.96);
   opacity: 1;
-  -webkit-backdrop-filter: 2.5rem;
-          backdrop-filter: 2.5rem;
+  backdrop-filter: 2.5rem;
 }
 .header__container {
   display: -webkit-box;
@@ -2621,6 +2620,14 @@ body {
     margin-bottom: 0.9375rem;
   }
 }
+@media (max-width: 46.875em) {
+  .footer__main {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+  }
+}
 @media (max-width: 29.93625em) {
   .footer__main {
     text-align: center;
@@ -2660,6 +2667,16 @@ body {
       -ms-flex-align: center;
           align-items: center;
   gap: 0.5rem;
+}
+@media (max-width: 56.1875em) {
+  .main-footer__logo {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 100%;
+            flex: 0 1 100%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
 }
 @media (max-width: 29.93625em) {
   .main-footer__logo {
